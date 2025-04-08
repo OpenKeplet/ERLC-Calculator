@@ -1,5 +1,5 @@
 def calculate_percentage(price_str):
-  """Calculates 61.46% of a given price string, respecting commas for thousands.
+  """Calculates 61.46% of a given price string, respecting commas for thousands."""
   try:
     # Remove commas before converting to float
     price = float(price_str.replace(",", ""))
