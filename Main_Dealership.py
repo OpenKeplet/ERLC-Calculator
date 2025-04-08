@@ -15,6 +15,8 @@ if __name__ == "__main__":
     output = calculate_percentage(price_input)
     if output is not None:
       print(f"The result of {price_input} multiplied by 61.46% is: {output}")
+      print("You might be able to get more than this amount.")
+      print("This is only the minimum amount you should expect.")
       break  # Exit the loop after successful input
     else:
       print("Invalid input. Please enter a valid number for the price.")
