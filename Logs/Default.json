@@ -1,0 +1,14 @@
+{
+    "Base": false,
+    "Manifest": {
+        "type": "Calculator",
+        "version": "0.0.3",
+        "description": "check README.md for more information"
+    },
+    "Test": true,
+    "Is_Beta": true,
+    "for_publish": false
+}
+
+
+
