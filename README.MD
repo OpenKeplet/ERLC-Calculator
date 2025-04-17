@@ -11,3 +11,7 @@ I could come back to it.
 
 **THIS IS A TEST VERSION EXPECT BUGS**
 
+**WHAT IS THIS?**
+
+A calculator for the dealership when youre seling youre car
+A calculator for the speed of youre car when you have a tow/atv attached
