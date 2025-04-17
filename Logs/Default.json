@@ -7,8 +7,15 @@
     },
     "Test": true,
     "Is_Beta": true,
-    "for_publish": false
+    "for_publish": false,
+    
+    "Base_2":true,
+    "Manifest_2": {
+        "type": "Calculator",
+        "version": "0.0.5",
+        "description": "check README.md for more information"
+    },
+    "Test_2": true,
+    "Is_Beta_2": true,
+    "for_publish_2": true
 }
-
-
-
