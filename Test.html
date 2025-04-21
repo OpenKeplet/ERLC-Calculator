@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #585555;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: #585555;
+            padding: 20px;
+            border-radius: 10px;
+            width: 800px;
+            max-width: 95%;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .label, .version-label {
+            color: #ffffff;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .input-field {
+            flex-grow: 1;
+            padding: 8px 12px;
+            font-size: 14px;
+            color: #000000;
+            background-color: #F0F0F0;
+            border: 2px solid #000000;
+            border-radius: 6px;
+            height: 30px;
+            box-sizing: border-box;
+            min-width: 150px;
+        }
+
+        .input-field::placeholder {
+            color: #454545;
+            opacity: 1;
+        }
+
+        .calculate-button {
+            background-color: #F0F0F0;
+            color: #000000;
+            font-size: 14px;
+            border: 2px solid #000000;
+            border-radius: 6px;
+            height: 36px;
+            width: 95px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            box-sizing: border-box;
+            flex-shrink: 0;
+            padding: 0;
+        }
+        .calculate-button:hover {
+            background-color: #949494;
+        }
+
+        .result-display {
+            background-color: #ffffff;
+            color: #000000;
+            font-size: 14px;
+            height: 30px;
+            min-width: 95px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+            box-sizing: border-box;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        #cashResultLabel { height: 23px; border-radius: 23px; }
+        #speedResultLabel { height: 26px; border-radius: 20px; }
+
+
+        .version-label {
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #000000;
+            background-color: #585555;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            .row {
+                 flex-direction: column;
+                 align-items: stretch;
+                 gap: 15px;
+            }
+             .input-field,
+             .calculate-button,
+             .result-display {
+                 width: 100%;
+                 max-width: none;
+                 flex-grow: 0;
+             }
+             .label {
+                 margin-bottom: -5px;
+             }
+             .version-label {
+                 position: static;
+                 text-align: center;
+                 margin-top: 20px;
+             }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="row">
+            <span class="label">Dealership</span>
+            <input type="text" id="priceInput" class="input-field" placeholder="Input Here Price">
+            <button id="calculateCashButton" class="calculate-button" onclick="onCalculateCashClick()">Calculate Cash</button>
+            <div id="cashResultLabel" class="result-display"></div>
+        </div>
+
+        <div class="row">
+             <span class="label">Max Speed</span>
+             <input type="text" id="speedInput" class="input-field" placeholder="Speed">
+             <button id="calculateSpeedButton" class="calculate-button" onclick="onCalculateSpeedClick()">Calculate</button>
+             <div id="speedResultLabel" class="result-display"></div>
+        </div>
+
+        <div id="versionLabel" class="version-label">Ver 0.0.5</div>
+
+    </div>
+
+    <script>
+        function calculateCashPercentage(inputStr) {
+            try {
+                const price = parseFloat(inputStr.replace(/,/g, ''));
+                if (isNaN(price)) {
+                    return null;
+                }
+                const percentage = 0.6443;
+                const result = price * percentage;
+
+                return result.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            } catch (error) {
+                console.error("Calculation error:", error);
+                return null;
+            }
+        }
+
+        function calculateSpeedPercentage(inputStr) {
+             try {
+                 const speed = parseFloat(inputStr.replace(/,/g, ''));
+                 if (isNaN(speed)) {
+                     return null;
+                 }
+                 const percentage = 0.6323;
+                 const result = speed * percentage;
+
+                 return result.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+             } catch (error) {
+                 console.error("Calculation error:", error);
+                 return null;
+             }
+        }
+
+        function onCalculateCashClick() {
+            const priceInput = document.getElementById('priceInput');
+            const cashResultLabel = document.getElementById('cashResultLabel');
+            const priceValue = priceInput.value;
+
+            const output = calculateCashPercentage(priceValue);
+
+            if (output !== null) {
+                cashResultLabel.textContent = `Price: ${output}`;
+            } else {
+                cashResultLabel.textContent = "Invalid Input";
+            }
+        }
+
+        function onCalculateSpeedClick() {
+            const speedInput = document.getElementById('speedInput');
+            const speedResultLabel = document.getElementById('speedResultLabel');
+            const speedValue = speedInput.value;
+
+            const output = calculateSpeedPercentage(speedValue);
+
+            if (output !== null) {
+                speedResultLabel.textContent = `Speed: ${output}`;
+            } else {
+                speedResultLabel.textContent = "Invalid Input";
+            }
+        }
+    </script>
+
+</body>
+</html>

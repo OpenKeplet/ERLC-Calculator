@@ -161,7 +161,6 @@ Label_id6 = customtkinter.CTkLabel(
 Label_id6.place(x=80, y=150)
 
 def calculate_percentage(price_str):
-  """Calculates 61.46% of a given price string, respecting commas for thousands."""
   try:
     # Remove commas before converting to float
     price = float(price_str.replace(",", ""))
@@ -172,7 +171,6 @@ def calculate_percentage(price_str):
     return None
 
 def calculate_percentage(speed_str):
-  """Calculates 61.46% of a given speed string, respecting commas for thousands."""
   try:
     # Remove commas before converting to float
     speed = float(speed_str.replace(",", ""))
